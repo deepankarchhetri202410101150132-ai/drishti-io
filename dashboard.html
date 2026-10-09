@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>दृष्टि-IO dashboard</title>
+<style>
+:root{--bg:#0a0e1a;--card:#131829;--accent:#7c6df2;--safe:#4ade80;--warn:#fbbf24;--danger:#ef4444;--text:#e5e7eb;--mut:#9ca3af;--r:16px;--rb:8px;--t:.3s ease;--sh:0 4px 16px rgba(0,0,0,.35);
+--status:var(--safe);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-size:16px;line-height:1.6;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
+h1,h2,h3{line-height:1.2;margin:0}h1{font-size:clamp(32px,5vw,48px)}h2{font-size:clamp(24px,3vw,32px)}h3{font-size:24px}
+.small{font-size:14px;color:var(--mut)}.tiny{font-size:12px;font-weight:500;color:var(--mut)}
+header,main{max-width:1200px;margin:0 auto;padding:16px}
+header{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
+header a.brand{color:var(--text);font-weight:700;font-size:24px;text-decoration:none}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{background:var(--card);border-radius:999px;padding:4px 12px;font-size:14px;box-shadow:var(--sh)}
+.grid{display:grid;gap:24px;grid-template-columns:1fr}
+@media(min-width:900px){.grid{grid-template-columns:1.1fr 1fr}}
+.card{background:var(--card);border-radius:var(--r);padding:24px;box-shadow:var(--sh);transition:transform var(--t),box-shadow var(--t);animation:up .5s ease both}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.5)}
+.stack{display:grid;gap:24px}
+@keyframes up{from{opacity:0;transform:translateY(16px)}}
+button{font:inherit;font-weight:600;min-height:48px;padding:0 24px;border:0;border-radius:var(--rb);background:var(--accent);color:#fff;cursor:pointer;transition:transform var(--t),box-shadow var(--t),background var(--t);display:inline-flex;align-items:center;justify-content:center;gap:8px}
+button:hover{transform:scale(1.03);box-shadow:0 0 16px rgba(124,109,242,.5)}
+button:active{transform:scale(.97)}
+button.red{background:var(--danger)}button.red:hover{box-shadow:0 0 16px rgba(239,68,68,.6)}
+button.ghost{background:#1e2540}
+button:disabled{opacity:.6;cursor:wait;transform:none}
+button.on{background:#166534}
+button.ok{animation:okf .8s}@keyframes okf{30%{background:var(--safe);color:#04210f}}
+:focus-visible{outline:3px solid #c4bdff;outline-offset:2px}
+.spin{width:16px;height:16px;border:2px solid #fff6;border-top-color:#fff;border-radius:50%;animation:rot .7s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.radar-wrap{position:relative;max-width:420px;margin:0 auto}
+svg{width:100%;height:auto;display:block}
+.sweep{transform-origin:200px 200px;animation:rot 4s linear infinite}
+.dot{animation:pulse 2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pulse{50%{transform:scale(1.5);opacity:.6}}
+.status{font-size:clamp(40px,8vw,64px);font-weight:700;color:var(--status);transition:color var(--t);text-align:center;animation:soft 2.4s ease-in-out infinite}
+@keyframes soft{50%{opacity:.7}}
+body.danger .status{animation:soft .8s infinite}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center}
+.stats b{font-size:32px;display:block;font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ring-bg{stroke:#1e2540}.ring{stroke:var(--status);transition:stroke-dashoffset var(--t),stroke var(--t)}
+.row{display:flex;gap:12px;flex-wrap:wrap}.row>button{flex:1 1 140px}
+.sk{background:linear-gradient(90deg,#1b2140,#262d52,#1b2140);background-size:200% 100%;animation:sh 1.2s infinite;border-radius:var(--rb);color:transparent}
+@keyframes sh{to{background-position:-200% 0}}
+.log{max-height:200px;overflow:auto;font-size:14px;list-style:none;padding:0;margin:0}
+.log li{padding:4px 0;border-bottom:1px solid #1e2540;animation:up .3s both}
+#chatlog{max-height:180px;overflow:auto;display:grid;gap:8px;margin-bottom:12px}
+.msg{padding:8px 12px;border-radius:var(--rb);background:#1e2540;animation:up .3s both;font-size:14px}.msg.me{background:var(--accent)}
+input{font:inherit;min-height:48px;width:100%;border-radius:var(--rb);border:1px solid #2a3157;background:#0e1325;color:var(--text);padding:0 12px}
+#toasts{position:fixed;top:16px;right:16px;display:grid;gap:8px;z-index:50}
+.toast{background:#1e2540;border-left:4px solid var(--warn);padding:12px 16px;border-radius:var(--rb);box-shadow:var(--sh);animation:tin .3s both,tout .3s 3.7s forwards;max-width:320px}
+.toast.good{border-color:var(--safe)}.toast.bad{border-color:var(--danger)}
+@keyframes tin{from{transform:translateX(120%)}}@keyframes tout{to{opacity:0;transform:translateX(120%)}}
+#flash{position:fixed;inset:0;background:var(--danger);opacity:0;pointer-events:none;z-index:40}
+body.sosfx #flash{animation:fl .5s 4}body.sosfx main{animation:shake .4s 3}
+@keyframes fl{50%{opacity:.55}}@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+button.pre{animation:pr .4s 3}@keyframes pr{50%{box-shadow:0 0 0 12px rgba(239,68,68,.4);transform:scale(1.05)}}
+.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}.mini{background:#0e1325;border:1px solid #1e2540;border-radius:var(--rb);padding:12px;display:grid;gap:4px}.meter{height:8px;border-radius:99px;background:#1e2540;margin:12px 0;overflow:hidden}.meter i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}.chip{min-height:36px;padding:0 12px;font-size:14px;font-weight:500;border-radius:999px}select{font:inherit;background:#0e1325;color:var(--text);border:1px solid #2a3157;border-radius:var(--rb);padding:4px}summary{cursor:pointer;font-weight:600}
+.radar-wrap{aspect-ratio:1;max-width:440px}.radar-wrap svg{position:relative;z-index:1}
+.sweepL{position:absolute;inset:5%;border-radius:50%;z-index:2;pointer-events:none;mix-blend-mode:screen;background:conic-gradient(from 0deg,transparent 0deg,transparent 235deg,rgba(124,109,242,.55) 360deg);animation:rot 4s linear infinite}
+.sweepL::after{content:"";position:absolute;left:calc(50% - 1px);top:0;width:2px;height:50%;background:linear-gradient(#c9c4ff,rgba(201,196,255,.15));box-shadow:0 0 10px #7c6df2}
+.ping,.ping2{transform-box:fill-box;transform-origin:center;animation:ping 2.4s ease-out infinite}.ping2{fill:#7c6df2}
+@keyframes ping{from{transform:scale(1);opacity:.6}to{transform:scale(3.2);opacity:0}}
+.legend{display:flex;justify-content:center;gap:24px;margin-top:16px;font-size:14px;color:var(--mut)}.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
+.tags{justify-content:center}
+.cardhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}.cardhead h3{font-size:20px}
+.statuswrap{text-align:center;position:relative;padding:8px 0 24px}
+.statuswrap::before{content:"";position:absolute;left:50%;top:45%;width:280px;height:150px;transform:translate(-50%,-50%);background:radial-gradient(closest-side,color-mix(in srgb,var(--status) 30%,transparent),transparent);pointer-events:none}
+.status{position:relative;letter-spacing:.08em}
+.substat{position:relative;display:inline-flex;align-items:center;gap:8px;padding:4px 16px;border-radius:999px;background:#0e1325;border:1px solid #1e2540;font-size:14px;color:var(--mut)}
+.pdot{width:8px;height:8px;border-radius:50%;background:var(--status);animation:soft 1.6s ease-in-out infinite}
+.gauges{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.gauge{margin:0;display:grid;justify-items:center;align-content:start;gap:8px;text-align:center;padding:16px 8px;border-radius:var(--r);background:#0e1325;border:1px solid #1e2540}
+.gauge svg{width:96px;height:96px}.gauge figcaption{font-size:14px;color:var(--mut);line-height:1.3}
+.gfg{stroke-linecap:round;transition:stroke-dashoffset .6s ease}
+.sparkbox{padding:16px;border-radius:var(--r);background:#0e1325;border:1px solid #1e2540;margin-bottom:24px}
+@media(max-width:480px){.gauge svg{width:72px;height:72px}.gauge{padding:12px 4px}}
+.sosov{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px;background:rgba(127,29,29,.9);animation:bgf 1s ease-in-out infinite alternate}
+.sosov[hidden]{display:none}@keyframes bgf{to{background:rgba(185,28,28,.96)}}
+.soscard{width:min(520px,100%);text-align:center;color:#fff}
+.soscard h2{font-size:clamp(28px,7vw,40px);margin:8px 0}
+.sosd{font-size:20px;color:#fff;margin:0 0 8px}
+.sirenico{font-size:80px;line-height:1;animation:wail .8s ease-in-out infinite alternate;filter:drop-shadow(0 0 20px #fff8)}
+@keyframes wail{from{transform:scale(1) rotate(-10deg)}to{transform:scale(1.18) rotate(10deg)}}
+.sosov button.big{min-height:64px;font-size:18px;font-weight:700;background:#fff;color:#7f1d1d}
+.sosov button.dim{background:rgba(0,0,0,.4);color:#fff}
+#sosBtns{margin-top:24px}
+.cdov{z-index:65}
+.cdnum{font-size:clamp(110px,32vw,220px);font-weight:800;line-height:1;margin:8px 0 24px;text-shadow:0 0 40px #fff6;animation:tick 1s ease-in-out infinite}
+@keyframes tick{50%{transform:scale(1.08)}}
+.sosov button.sosnow{background:#ef4444;color:#fff;border:3px solid #fff}
+.sr{position:absolute;left:-9999px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div id="flash"></div>
+<div id="cdCard" class="sosov cdov" role="alertdialog" aria-modal="true" aria-labelledby="cdTitle" hidden>
+ <div class="soscard"><h2 id="cdTitle" aria-live="assertive">⚠️ A potential danger was detected</h2>
+  <p class="sosd" id="cdText">Are you safe? Respond in 10…</p>
+  <div class="cdnum" id="cdNum" aria-hidden="true">10</div>
+  <div class="row"><button class="big" id="cdSafe" aria-label="I'm safe">✅ I'M SAFE</button><button class="big sosnow" id="cdSend" aria-label="Send SOS now">🚨 SEND SOS NOW</button></div></div></div>
+<div id="sosCard" class="sosov" role="alertdialog" aria-modal="true" aria-labelledby="sosTitle" hidden>
+ <div class="soscard"><div class="sirenico" aria-hidden="true">🚨</div><h2 id="sosTitle">SOS ACTIVE</h2>
+  <p class="sosd" id="sosDetail"></p><p class="small" id="sosPlaying" style="color:#fecaca">Siren + voice playing…</p>
+  <p class="small" id="sosHint" style="color:#fff" hidden>Tap anywhere to turn on sound.</p>
+  <div class="row" id="sosBtns"></div></div></div><div id="toasts" aria-live="polite"></div>
+<div class="sr" role="status" aria-live="assertive" id="announce"></div>
+<header>
+  <a class="brand" href="/" aria-label="दृष्टि-IO home">दृष्टि-IO</a>
+  <div class="pills">
+    <span class="pill" id="conn" role="status">🟡 Connecting</span>
+    <span class="pill" id="devCount">🟢 0 other devices connected</span><label class="pill">This device <select id="deviceSel" aria-label="This device"><option>Phone</option><option>Laptop</option></select></label>
+    <span class="pill">Works offline</span>
+  </div>
+</header>
+<main>
+<p class="small" id="banner" hidden>⚠️ Connection lost. Reconnecting… (attempt <span id="retry">0</span>)</p>
+<div class="grid">
+ <section class="stack" aria-label="Live safety view">
+  <div class="card">
+   <div class="cardhead"><h3>Live radar</h3><span class="tiny">Range 300 m</span></div>
+   <div class="radar-wrap"><div class="sweepL" aria-hidden="true"></div>
+    <svg viewBox="0 0 400 400" id="radar" role="img" aria-label="Radar showing nearby helpers">
+     <defs><radialGradient id="bgR"><stop offset="0" stop-color="#1b2252"/><stop offset="1" stop-color="#0b0f21"/></radialGradient></defs>
+     <circle cx="200" cy="200" r="180" fill="url(#bgR)" stroke="#7c6df2" stroke-opacity=".7" stroke-width="2"/>
+     <circle cx="200" cy="200" r="190" fill="none" stroke="#3a4280" stroke-width="6" stroke-dasharray="1.5 15.08"/>
+     <g fill="none" stroke="#2d3566"><circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="120"/><path d="M200 20V380M20 200H380"/><path d="M72.7 72.7L327.3 327.3M327.3 72.7L72.7 327.3" opacity=".45"/></g>
+     <g fill="#8b93c9" font-size="11" font-weight="600" text-anchor="middle"><text x="200" y="58">N</text><text x="200" y="348">S</text><text x="346" y="204">E</text><text x="54" y="204">W</text></g>
+     <g><rect x="177" y="132" width="46" height="16" rx="8" fill="#0c1022" stroke="#2d3566"/><text x="200" y="144" text-anchor="middle" fill="#a3a9c8" font-size="10" font-weight="600">100 m</text></g><g><rect x="177" y="72" width="46" height="16" rx="8" fill="#0c1022" stroke="#2d3566"/><text x="200" y="84" text-anchor="middle" fill="#a3a9c8" font-size="10" font-weight="600">200 m</text></g><g><rect x="177" y="12" width="46" height="16" rx="8" fill="#0c1022" stroke="#2d3566"/><text x="200" y="24" text-anchor="middle" fill="#a3a9c8" font-size="10" font-weight="600">300 m</text></g>
+     <g id="dots"></g>
+     <circle class="ping2" cx="200" cy="200" r="7"/><circle cx="200" cy="200" r="7" fill="#7c6df2" stroke="#fff" stroke-width="2.5"/>
+    </svg>
+   </div>
+   <div class="legend"><span><i style="background:#7c6df2"></i>You</span><span><i style="background:#4ade80"></i>Helper</span></div>
+   <div class="tags" id="tags"><span class="sk">182m S</span><span class="sk">221m NW</span></div>
+  </div>
+  <div class="card">
+   <div class="statuswrap"><div class="status" id="statusText" aria-live="polite">SAFE</div><div class="substat"><i class="pdot"></i><span id="statusSub">People are close by.</span></div></div>
+   <div class="gauges"><figure class="gauge"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="ring-bg" cx="50" cy="50" r="42" fill="none" stroke-width="8"/><circle id="ringH" class="gfg" cx="50" cy="50" r="42" fill="none" stroke-width="8" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 50 50)" stroke="#7c6df2"/><text id="helperCount" x="50" y="59" text-anchor="middle" fill="#e5e7eb" font-size="26" font-weight="600">0</text></svg><figcaption id="helperLabel">people within 300 m</figcaption></figure><figure class="gauge"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="ring-bg" cx="50" cy="50" r="42" fill="none" stroke-width="8"/><circle id="ringN" class="gfg" cx="50" cy="50" r="42" fill="none" stroke-width="8" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 50 50)" stroke="#4ade80"/><text id="nearest" x="50" y="59" text-anchor="middle" fill="#e5e7eb" font-size="26" font-weight="600">0</text></svg><figcaption >nearest (m)</figcaption></figure><figure class="gauge"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="ring-bg" cx="50" cy="50" r="42" fill="none" stroke-width="8"/><circle id="ring" class="ring" cx="50" cy="50" r="42" fill="none" stroke-width="8" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 50 50)" /><text id="dangerNum" x="50" y="59" text-anchor="middle" fill="#e5e7eb" font-size="26" font-weight="600">0</text></svg><figcaption >danger / 100</figcaption></figure></div>
+   <div class="sparkbox"><div class="cardhead" style="margin-bottom:8px"><span class="small">Helpers nearby</span><span class="tiny">Last 5 minutes</span></div>
+    <svg id="spark" viewBox="0 0 300 64" preserveAspectRatio="none" style="width:100%;height:64px" role="img" aria-label="Helper count over the last 5 minutes"><defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7c6df2" stop-opacity=".45"/><stop offset="1" stop-color="#7c6df2" stop-opacity="0"/></linearGradient></defs><g stroke="#1e2540" vector-effect="non-scaling-stroke"><line x1="0" x2="300" y1="16" y2="16"/><line x1="0" x2="300" y1="32" y2="32"/><line x1="0" x2="300" y1="48" y2="48"/></g><polygon id="sparkArea" fill="url(#sg)"/><polyline id="sparkLine" fill="none" stroke="#7c6df2" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>
+    <p class="tiny" style="text-align:center;margin:8px 0 0">Last updated <span id="updated">just now</span></p></div>
+   <div class="row" style="margin-top:16px">
+    <button class="red" id="sosBtn" aria-label="Send SOS">Send SOS</button>
+    <button class="ghost" id="safeBtn" aria-label="Mark myself safe">I'm safe</button>
+   </div>
+  </div>
+ </section>
+ <section class="stack" aria-label="Controls">
+  <div class="card"><h3>Help requests</h3><div id="allClear"><div class="row" style="align-items:center;flex-wrap:nowrap"><span style="font-size:32px">🛡️</span><div><b>All clear</b><p class="small" style="margin:0">Help requests from nearby devices appear here.</p></div></div></div><ul class="log" id="alerts"></ul></div>
+  <div class="card"><h3>Sensors</h3>
+   <div class="trio">
+    <div class="mini"><b>Motion</b><span class="small">Simulated (keyboard / buttons)</span><span class="small">Fall, struggle, dizzy, freeze</span><span class="small">Now <b id="motionVal">0</b></span></div>
+    <div class="mini"><b>Voice</b><span class="small">Simulated (V / H keys)</span><span class="small">Heard: <span id="heard">-</span></span><span class="small">Now <b id="voiceVal">0</b></span></div>
+    <div class="mini"><b>Location</b><span class="small">Simulated</span><span class="small">Shared when an SOS starts</span><span class="small" id="locVal">off</span></div>
+   </div>
+   <button class="ghost" id="motionBtn" style="width:100%" aria-label="Start motion sensing">Start motion sensing</button>
+   <p class="small" id="sensorNote">Uses this phone's accelerometer and gyroscope.</p>
+   <div class="row"><button class="ghost" id="micBtn" aria-label="Turn on microphone">Turn on microphone</button><button class="ghost" id="locBtn" aria-label="Share my location">Share my location</button><button class="ghost" id="alarmBtn" aria-label="Turn on alarm sound">Turn on alarm sound</button></div>
+   <div class="meter" role="progressbar" aria-label="Microphone level"><i id="meterFill"></i></div>
+   <p class="small" id="micStatus">Microphone is off.</p>
+   <p class="small" id="locStatus">Location sharing is off. A simulated 50 m distance is used.</p>
+   <details><summary>Simulate inputs</summary><div class="row" style="margin-top:12px">
+    <button class="ghost" data-sim="fall" data-key="f">Fall (F)</button><button class="ghost" data-sim="struggle" data-key="s">Struggle (S)</button><button class="ghost" data-sim="dizzy" data-key="d">Dizzy (D)</button><button class="ghost" data-sim="freeze" data-key="z">Freeze (Z)</button><button class="ghost" data-sim="scream" data-key="v">Scream (V)</button><button class="ghost" data-sim="help" data-key="h">Help words (H)</button></div></details>
+   <p class="tiny" style="margin-top:12px">No sign-up required. Your data never leaves your device.</p>
+  </div>
+  <div class="card"><h3>Ask दृष्टि-IO <span class="small">works offline</span></h3><div class="tags" style="margin:0 0 12px"><button class="ghost chip">Is this area safe?</button><button class="ghost chip">Any helpers nearby?</button><button class="ghost chip">Safest route?</button></div><div id="chatlog" aria-live="polite"></div>
+   <div class="row"><input id="chatInput" aria-label="Ask दृष्टि-IO a question" placeholder="Is this area safe?"><button id="chatSend" aria-label="Send question">Ask</button></div></div>
+  <div class="card"><h3>Activity log</h3><ul class="log" id="log"><li class="small">No alerts.</li></ul></div>
+ </section>
+</div>
+</main>
+<script src="/alarm.js"></script>
+<script src="/mic.js" defer></script>
+<script>
+const $=id=>document.getElementById(id);
+const HELPERS=[{d:182,a:180,n:"S"},{d:221,a:315,n:"NW"},{d:140,a:45,n:"NE"},{d:260,a:90,n:"E"},{d:95,a:225,n:"SW"},{d:290,a:270,n:"W"}];
+const CID=Math.random().toString(36).slice(2);let sosMode=null,sosId=null;let dismissedUpTo=0,helperAlerts=0,since=-1;let lastPoll=0,fails=0,lastOk=Date.now(),helperHist=[6,6,5,6,6,7,7,6,6,5,5,6,6,6,7,6,6,5,6,6,7,7,6,6,6,5,6,6,6,6],alarmCtx=null,alarmOn=false;
+const isPhone=/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&innerWidth<820);
+$("deviceSel").value=isPhone?"Phone":"Laptop";
+
+function toast(m,k){const t=document.createElement("div");t.className="toast "+(k||"");t.textContent=m;$("toasts").append(t);setTimeout(()=>t.remove(),4000);$("announce").textContent=m}
+function log(m){$("log").querySelector(".small")?.remove();const li=document.createElement("li");li.textContent=new Date().toLocaleTimeString()+" · "+m;$("log").prepend(li)}
+async function busy(btn,fn){if(btn.disabled)return;const h=btn.innerHTML;btn.disabled=true;btn.innerHTML='<span class="spin"></span>';
+ try{const r=await fn();btn.innerHTML=h;btn.classList.add("ok");setTimeout(()=>btn.classList.remove("ok"),800);return r}
+ catch(e){btn.innerHTML=h;toast(e.message||"Something went wrong. Try again.","bad")}finally{btn.disabled=false;btn.innerHTML=btn.innerHTML.replace(/^$/,h)}}
+async function api(p,o){const r=await fetch(p,o);if(!r.ok)throw new Error("Request failed ("+r.status+")");return r.json()}
+const post=(p,b)=>api(p,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)});
+
+function countUp(el,to){const from=+el.dataset.v||0;el.dataset.v=to;const s=performance.now();
+ (function f(n){const k=Math.min(1,(n-s)/500);el.textContent=Math.round(from+(to-from)*k);if(k<1)requestAnimationFrame(f)})(s)}
+
+function drawHelpers(){
+ const g=$("dots"),tg=$("tags");g.innerHTML="";tg.innerHTML="";
+ if(!HELPERS.length){tg.innerHTML='<span class="small">No helpers nearby — scanning...</span>';return}
+ const near=Math.min(...HELPERS.map(h=>h.d)),NS="http://www.w3.org/2000/svg";
+ const mk=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.append(e);return e};
+ HELPERS.forEach((h,i)=>{const r=h.d/300*180,a=h.a*Math.PI/180,x=(200+r*Math.sin(a)).toFixed(1),y=(200-r*Math.cos(a)).toFixed(1);
+  const gp=mk("g",{},g),p=mk("circle",{cx:x,cy:y,r:5,class:"ping"},gp);p.style.animationDelay=i*.4+"s";
+  mk("circle",{cx:x,cy:y,r:5.5,fill:"#4ade80",stroke:h.d===near?"#fff":"#0c1022","stroke-width":2},gp);
+  const s=document.createElement("span");s.className="pill";s.textContent="● "+h.d+" m "+h.n;tg.append(s)});
+ countUp($("helperCount"),HELPERS.length);countUp($("nearest"),near);
+ $("ringH").style.strokeDashoffset=264*(1-HELPERS.length/10);$("ringN").style.strokeDashoffset=264*(1-near/300);
+ $("helperLabel").textContent="people within 300 m"}
+function spark(push){if(push)helperHist.push(HELPERS.length);helperHist=helperHist.slice(-30);const w=300,h=64,pts=helperHist.map((v,i)=>[(i*w/29).toFixed(1),(h-4-(v/10)*(h-12)).toFixed(1)].join(","));
+ $("sparkLine").setAttribute("points",pts.join(" "));$("sparkArea").setAttribute("points","0,"+h+" "+pts.join(" ")+" "+w+","+h)}
+
+function setDanger(v){
+ const lvl=v>=70?"danger":v>=40?"warn":"safe";
+ document.body.classList.toggle("danger",lvl==="danger");
+ document.documentElement.style.setProperty("--status",`var(--${lvl})`);
+ $("statusText").textContent=lvl==="danger"?"DANGER":lvl==="warn"?"CAUTION":"SAFE";
+ $("statusSub").textContent={safe:"People are close by.",warn:"Stay alert. दृष्टि-IO is watching.",danger:"Asking for help now."}[lvl];$("ring").style.strokeDashoffset=264*(1-Math.min(v,100)/100);countUp($("dangerNum"),v)}
+
+function sosFx(){document.body.classList.add("sosfx");setTimeout(()=>document.body.classList.remove("sosfx"),2200);if(navigator.vibrate)navigator.vibrate([200,100,200])}
+function renderAlerts(list){if(!list.length)return;const ul=$("alerts");$("allClear").hidden=true;ul.querySelector(".small")?.remove();
+ list.forEach(a=>{const li=document.createElement("li");li.textContent=a.ts+" · "+a.msg;ul.prepend(li)})}
+
+function isMine(s){return s.from===CID||(!s.from&&s.device===$("deviceSel").value.toLowerCase())}
+function helperText(s){return (s.distance_m||50)+"m away — "+(s.direction||"northeast")+(helperAlerts>1?" · "+helperAlerts+" alerts":"")}
+async function pollOnce(){
+ const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),2500);
+ try{
+  const r=await fetch("/poll?since="+since+"&cid="+CID,{signal:ctl.signal,cache:"no-store"});
+  if(!r.ok)throw new Error("poll "+r.status);
+  const d=await r.json();since=d.latest;lastOk=Date.now();fails=0;
+  $("conn").textContent="🟢 Live";$("banner").hidden=true;
+  setDanger(d.danger);$("motionVal").textContent=Math.round(d.motion);$("voiceVal").textContent=Math.round(d.voice);$("meterFill").style.width=Math.min(100,d.voice)+"%";$("devCount").textContent="🟢 "+d.devices+" other devices connected";
+  d.events.forEach(ev=>{if(isMine(ev))return;helperAlerts++;renderAlerts([ev]);log("SOS alert #"+ev.id+" received");if(sosMode==="helper")$("sosDetail").textContent=helperText(ev)});
+  handlePending(d.pending);handleSos(d.sos);
+ }finally{clearTimeout(to)}
+}
+async function pollLoop(){
+ for(;;){const t0=Date.now();let ok=true;
+  try{await pollOnce()}catch(e){ok=false;fails++;$("conn").textContent=fails>3?"🔴 Offline":"🟡 Reconnecting";$("banner").hidden=false;$("retry").textContent=fails}
+  await new Promise(r=>setTimeout(r,ok?Math.max(0,500-(Date.now()-t0)):(fails<=2?0:300)))}}
+setInterval(()=>{const s=Math.round((Date.now()-lastOk)/1000);$("updated").textContent=s<5?"just now":s<60?s+"s ago":Math.floor(s/60)+"m ago"},1000);setInterval(()=>spark(true),10000);
+
+$("sosBtn").onclick=()=>sendSos();
+async function sendSos(){
+ if(sosMode!=="victim")beginSos("victim",{id:null});
+ const b=$("sosBtn");b.classList.add("pre");setTimeout(()=>b.classList.remove("pre"),1300);
+ for(let i=0;i<3;i++){try{const r=await post("/sos",{device:$("deviceSel").value.toLowerCase(),cid:CID});if(sosMode==="victim")sosId=r.id;toast("SOS sent. Helpers are being alerted.","good");log("SOS sent");return}catch(err){}}
+ toast("SOS couldn't reach the laptop. The alarm is still playing.","bad")}
+$("safeBtn").onclick=e=>busy(e.currentTarget,async()=>{if(sosMode!=="helper")await cancelSos();$("allClear").hidden=false;$("alerts").innerHTML="";setDanger(0);toast("Marked safe.","good");log("Marked safe")});
+
+$("micBtn").onclick=e=>busy(e.currentTarget,async()=>{
+ try{const s=await navigator.mediaDevices.getUserMedia({audio:true});s.getTracks().forEach(t=>t.stop());
+  $("micBtn").classList.add("on");toast("Microphone is on.","good");$("micStatus").textContent="Microphone is on.";log("Microphone on");
+  if(window.startMic)window.startMic()}
+ catch(err){throw new Error(navigator.mediaDevices?"Tap the lock icon in the address bar to allow microphone.":"Microphone needs a secure origin. Enable the Chrome flag from the README.")}});
+$("locBtn").onclick=e=>busy(e.currentTarget,()=>new Promise((ok,no)=>{
+ if(!navigator.geolocation)return no(new Error("Location isn't available on this device."));
+ navigator.geolocation.getCurrentPosition(p=>{$("locVal").textContent="on";$("locStatus").textContent="Location sharing is on. Shared only during SOS.";$("locBtn").classList.add("on");log("Location shared");toast("Location is on. Shared only during SOS.","good");ok()},
+ ()=>no(new Error("Location blocked. Tap the lock icon in the address bar to allow it.")),{timeout:10000})}));
+$("motionBtn").onclick=e=>busy(e.currentTarget,async()=>{
+ if(!window.DeviceMotionEvent){$("sensorNote").textContent="Motion sensors not available. Using manual mode.";throw new Error("Motion sensors not available. Using manual mode.")}
+ if(DeviceMotionEvent.requestPermission&&(await DeviceMotionEvent.requestPermission())!=="granted")throw new Error("Motion permission denied.");
+ let t=0;addEventListener("devicemotion",ev=>{const a=ev.accelerationIncludingGravity;if(!a||Date.now()-t<1000)return;t=Date.now();
+  const m=Math.min(100,Math.abs(Math.hypot(a.x||0,a.y||0,a.z||0)-9.8)*10);post("/sensor-data",{motion:m,cid:CID}).catch(()=>{})});
+ $("motionBtn").classList.add("on");toast("Motion sensing started.","good");log("Motion sensing on")});
+$("alarmBtn").onclick=e=>{const b=e.currentTarget;
+ if(alarmOn){Alarm.stop();alarmOn=false;b.classList.remove("on");b.textContent="Turn on alarm sound";return}
+ if(sosMode)return toast("An SOS alarm is already playing.");
+ Alarm.start("test");alarmOn=true;b.classList.add("on");b.textContent="Turn off alarm sound";log("Alarm test on")};
+
+async function ask(){const q=$("chatInput").value.trim();if(!q)return;$("chatInput").value="";
+ const add=(t,c)=>{const m=document.createElement("div");m.className="msg "+c;m.textContent=t;$("chatlog").append(m);$("chatlog").scrollTop=1e5};
+ add(q,"me");try{const r=await post("/chat",{message:q,helpers:HELPERS.length});add(r.reply,"")}catch(e){toast("दृष्टि-IO couldn't answer. Try again.","bad")}}
+$("chatSend").onclick=ask;$("chatInput").onkeydown=e=>{if(e.key==="Enter")ask()};
+document.onkeydown=e=>{if(e.key==="Escape")document.activeElement.blur()};
+
+const card=$("sosCard");
+function mkBtn(label,cls,fn){const b=document.createElement("button");b.textContent=label;b.className=cls;b.setAttribute("aria-label",label);b.onclick=fn;return b}
+function showCard(role,s){
+ delete card.dataset.helped;
+ $("sosTitle").textContent=role==="victim"?"🚨 SOS ACTIVE":"🚨 SOMEONE NEEDS HELP";
+ $("sosDetail").textContent=role==="victim"?"Police are on the way. Nearby helpers have been alerted.":helperText(s);
+ const box=$("sosBtns");box.innerHTML="";
+ if(role==="victim")box.append(mkBtn("I'M SAFE — STOP ALARM","big",()=>{cancelSos();toast("Alarm stopped. Marked safe.","good")}));
+ else box.append(mkBtn("I'M RESPONDING","big",respond),mkBtn("DISMISS","big dim",dismiss),mkBtn("🔇 Mute","big dim",toggleMute));
+ card.hidden=false;box.firstChild.focus()}
+function beginSos(role,s){
+ sosMode=role;sosId=s.id??null;alarmOn=false;$("alarmBtn").classList.remove("on");$("alarmBtn").textContent="Turn on alarm sound";
+ Alarm.start(role);showCard(role,s);sosFx();if(navigator.vibrate)navigator.vibrate([400,150,400,150,400]);
+ log(role==="victim"?"SOS active. Alarm started.":"SOS received from nearby. Alarm started.")}
+function endSos(){helperAlerts=0;Alarm.stop();card.hidden=true;sosMode=null;sosId=null}
+async function cancelSos(){endSos();try{await post("/sos/cancel",{cid:CID})}catch(e){toast("Couldn't tell helpers you're safe. Check your connection.","bad")}}
+async function respond(){dismissedUpTo=Math.max(dismissedUpTo,sosId||0);endSos();try{await post("/sos/respond",{cid:CID});toast("Response sent. She can see help is coming.","good");log("Responding to SOS")}catch(e){toast("Couldn't send your response. Check your connection.","bad")}}
+function dismiss(){dismissedUpTo=Math.max(dismissedUpTo,sosId||0);endSos();log("SOS dismissed")}
+function toggleMute(e){const b=e.currentTarget,on=b.dataset.m!=="1";Alarm.mute(on);b.dataset.m=on?"1":"";b.textContent=on?"🔊 Unmute":"🔇 Mute"}
+function handleSos(s){
+ if(!s||!s.active){if(sosMode&&sosId!==null){const was=sosMode;endSos();if(was==="helper")toast("She marked herself safe. Alarm stopped.","good")}return}
+ const mine=isMine(s);
+ if(!mine&&s.id<=dismissedUpTo)return;
+ if(sosMode){if(mine!==(sosMode==="victim"))return;sosId=s.id;
+  if(mine&&s.responded&&!card.dataset.helped){card.dataset.helped="1";$("sosDetail").textContent="🤝 Help coming. A helper is responding.";toast("Help is coming.","good")}return}
+ beginSos(mine?"victim":"helper",s)}
+let cd=null,cdSkip=0,cdLast=-1;
+function hideCd(){$("cdCard").hidden=true;cd=null}
+function handlePending(p){
+ if(!p||!isMine(p)){if(cd)hideCd();return}
+ if(p.id===cdSkip||sosMode==="victim")return;
+ if(!cd){cd={id:p.id};cdLast=-1;$("cdCard").hidden=false;$("cdSend").focus();if(navigator.vibrate)navigator.vibrate([300,100,300]);log("Danger detected. Countdown started.")}
+ cd.end=Date.now()+p.remaining_ms}
+setInterval(()=>{if(!cd)return;const s=Math.max(0,Math.ceil((cd.end-Date.now())/1000));
+ if(s!==cdLast){cdLast=s;$("cdNum").textContent=s;$("cdText").textContent=s>0?"Are you safe? Respond in "+s+"…":"Sending SOS…";if(s>0&&Alarm.beep)Alarm.beep()}},100);
+$("cdSafe").onclick=()=>{cdSkip=cd?cd.id:cdSkip;hideCd();toast("Marked safe. Alert cancelled.","good");log("Countdown cancelled: marked safe");post("/sos/cancel",{cid:CID}).catch(()=>toast("Couldn't cancel on the server. Try again.","bad"))};
+$("cdSend").onclick=()=>{cdSkip=cd?cd.id:cdSkip;hideCd();sendSos()};
+setInterval(()=>{$("sosHint").hidden=!(sosMode&&!Alarm.running)},500);
+addEventListener("keydown",e=>{if(e.key==="Escape"&&sosMode==="helper")dismiss()});
+document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{$("chatInput").value=c.textContent;ask()});
+const SIM={fall:["F","Fall"],struggle:["S","Struggle"],dizzy:["D","Dizzy"],freeze:["Z","Freeze"],scream:["V","Scream"],help:["H","Help words"]};
+function simulate(kind){const n=SIM[kind];
+ toast(n[0]+" pressed: "+n[1]+" registered","good");log("Simulated "+n[1].toLowerCase()+" ("+n[0]+")");
+ if(kind==="help")$("heard").textContent="help words";if(kind==="scream")$("heard").textContent="scream";
+ const b=document.querySelector('[data-sim="'+kind+'"]');if(b){b.classList.remove("ok");void b.offsetWidth;b.classList.add("ok")}
+ fetch("/simulate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({kind})}).catch(()=>toast("The server didn't get that key. Check the connection.","bad"))}
+document.querySelectorAll("[data-sim]").forEach(b=>b.onclick=()=>simulate(b.dataset.sim));
+addEventListener("keydown",e=>{if(e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName))return;
+ const b=document.querySelector('[data-key="'+e.key.toLowerCase()+'"]');if(b){e.preventDefault();simulate(b.dataset.sim)}});
+drawHelpers();spark();pollLoop();
+api("/events").then(d=>{renderAlerts(d.events.filter(x=>x.kind==="sos"));d.events.slice(-5).forEach(x=>log(x.msg))}).catch(()=>{});
+</script>
+</body>
+</html>

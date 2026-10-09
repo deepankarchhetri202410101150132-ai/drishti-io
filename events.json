@@ -1,0 +1,772 @@
+[
+ {
+  "ts": "2026-10-02 13:08:34",
+  "epoch": 1790926714.0216906,
+  "kind": "sos",
+  "msg": "SOS from phone sensors. Danger score 75",
+  "source": "phone sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:09:28",
+  "epoch": 1790926768.2336757,
+  "kind": "sos",
+  "msg": "SOS from phone sensors. Danger score 75",
+  "source": "phone sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:09:52",
+  "epoch": 1790926792.3761384,
+  "kind": "sos",
+  "msg": "SOS from laptop.",
+  "source": "laptop",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:10:03",
+  "epoch": 1790926803.9505117,
+  "kind": "sos",
+  "msg": "SOS from laptop.",
+  "source": "laptop",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:10:16",
+  "epoch": 1790926816.3173258,
+  "kind": "sos",
+  "msg": "SOS from phone sensors. Danger score 75",
+  "source": "phone sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:10:27",
+  "epoch": 1790926827.942572,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:10:53",
+  "epoch": 1790926853.5657341,
+  "kind": "sos",
+  "msg": "SOS from phone sensors. Danger score 73",
+  "source": "phone sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:11:53",
+  "epoch": 1790926913.1900918,
+  "kind": "sos",
+  "msg": "SOS from phone sensors. Danger score 73",
+  "source": "phone sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:16:41",
+  "epoch": 1790927201.9485402,
+  "kind": "sos",
+  "msg": "SOS from phone sensors. Danger score 73",
+  "source": "phone sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:17:08",
+  "epoch": 1790927228.3042386,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:17:19",
+  "epoch": 1790927239.6427665,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:17:40",
+  "epoch": 1790927260.0259736,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:17:57",
+  "epoch": 1790927277.5185187,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:18:01",
+  "epoch": 1790927281.6344087,
+  "kind": "sos",
+  "msg": "SOS from phone sensors. Danger score 74",
+  "source": "phone sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:18:13",
+  "epoch": 1790927293.5043263,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:18:25",
+  "epoch": 1790927305.5801055,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:18:40",
+  "epoch": 1790927320.216767,
+  "kind": "sos",
+  "msg": "SOS from phone sensors. Danger score 75",
+  "source": "phone sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:19:24",
+  "epoch": 1790927364.2641232,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:19:31",
+  "epoch": 1790927371.4318333,
+  "kind": "sos",
+  "msg": "SOS from phone sensors. Danger score 75",
+  "source": "phone sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:20:45",
+  "epoch": 1790927445.7739131,
+  "kind": "sos",
+  "msg": "SOS from phone sensors. Danger score 73",
+  "source": "phone sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:33:28",
+  "epoch": 1790928208.4436324,
+  "kind": "sos",
+  "msg": "SOS from phone sensors. Danger score 73",
+  "source": "phone sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:40:50",
+  "epoch": 1790928650.8198807,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:44:04",
+  "epoch": 1790928844.7324483,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 13:49:56",
+  "epoch": 1790929196.3595247,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 14:11:29",
+  "epoch": 1790930489.2370079,
+  "kind": "simulate",
+  "msg": "Simulated fall"
+ },
+ {
+  "ts": "2026-10-02 14:11:29",
+  "epoch": 1790930489.3090084,
+  "kind": "detect",
+  "msg": "Danger detected (laptop sensors, score 66). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-02 14:11:36",
+  "epoch": 1790930496.5797975,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-02 14:13:22",
+  "epoch": 1790930602.6672826,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 14:13:29",
+  "epoch": 1790930609.0161066,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-02 14:14:01",
+  "epoch": 1790930641.475209,
+  "kind": "detect",
+  "msg": "Danger detected (phone sensors, score 75). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-02 14:14:11",
+  "epoch": 1790930651.484951,
+  "kind": "sos",
+  "msg": "SOS from phone sensors. Sent automatically after the countdown.",
+  "source": "phone sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 14:14:23",
+  "epoch": 1790930663.9805598,
+  "kind": "respond",
+  "msg": "A helper is responding."
+ },
+ {
+  "ts": "2026-10-02 14:16:28",
+  "epoch": 1790930788.6168177,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 14:16:34",
+  "epoch": 1790930794.7774258,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-02 14:17:21",
+  "epoch": 1790930841.4580395,
+  "kind": "detect",
+  "msg": "Danger detected (phone sensors, score 51). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-02 14:17:27",
+  "epoch": 1790930847.402447,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-02 14:39:48",
+  "epoch": 1790932188.7056336,
+  "kind": "simulate",
+  "msg": "Simulated freeze"
+ },
+ {
+  "ts": "2026-10-02 14:39:51",
+  "epoch": 1790932191.9757342,
+  "kind": "simulate",
+  "msg": "Simulated dizzy"
+ },
+ {
+  "ts": "2026-10-02 14:39:52",
+  "epoch": 1790932192.2558591,
+  "kind": "simulate",
+  "msg": "Simulated fall"
+ },
+ {
+  "ts": "2026-10-02 14:39:52",
+  "epoch": 1790932192.3423238,
+  "kind": "detect",
+  "msg": "Danger detected (laptop sensors, score 66). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-02 14:40:01",
+  "epoch": 1790932201.396353,
+  "kind": "sos",
+  "msg": "SOS from laptop.",
+  "source": "laptop",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 14:40:39",
+  "epoch": 1790932239.4028108,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-02 14:40:49",
+  "epoch": 1790932249.6535208,
+  "kind": "sos",
+  "msg": "SOS from laptop.",
+  "source": "laptop",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 14:41:16",
+  "epoch": 1790932276.2940798,
+  "kind": "respond",
+  "msg": "A helper is responding."
+ },
+ {
+  "ts": "2026-10-02 14:41:20",
+  "epoch": 1790932280.7690525,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-02 20:16:33",
+  "epoch": 1790952393.943958,
+  "kind": "simulate",
+  "msg": "Simulated scream"
+ },
+ {
+  "ts": "2026-10-02 20:16:34",
+  "epoch": 1790952394.135164,
+  "kind": "detect",
+  "msg": "Danger detected (laptop sensors, score 58). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-02 20:16:36",
+  "epoch": 1790952396.9924486,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-02 20:16:37",
+  "epoch": 1790952397.9102216,
+  "kind": "simulate",
+  "msg": "Simulated scream"
+ },
+ {
+  "ts": "2026-10-02 20:16:38",
+  "epoch": 1790952398.887968,
+  "kind": "simulate",
+  "msg": "Simulated scream"
+ },
+ {
+  "ts": "2026-10-02 20:16:39",
+  "epoch": 1790952399.2644787,
+  "kind": "simulate",
+  "msg": "Simulated scream"
+ },
+ {
+  "ts": "2026-10-02 20:16:39",
+  "epoch": 1790952399.7663653,
+  "kind": "simulate",
+  "msg": "Simulated scream"
+ },
+ {
+  "ts": "2026-10-02 20:16:39",
+  "epoch": 1790952399.7774827,
+  "kind": "simulate",
+  "msg": "Simulated scream"
+ },
+ {
+  "ts": "2026-10-02 20:16:40",
+  "epoch": 1790952400.4045858,
+  "kind": "simulate",
+  "msg": "Simulated scream"
+ },
+ {
+  "ts": "2026-10-02 20:16:54",
+  "epoch": 1790952414.574536,
+  "kind": "simulate",
+  "msg": "Simulated fall"
+ },
+ {
+  "ts": "2026-10-02 20:16:55",
+  "epoch": 1790952415.5447288,
+  "kind": "simulate",
+  "msg": "Simulated struggle"
+ },
+ {
+  "ts": "2026-10-02 20:16:57",
+  "epoch": 1790952417.734903,
+  "kind": "simulate",
+  "msg": "Simulated scream"
+ },
+ {
+  "ts": "2026-10-02 20:16:59",
+  "epoch": 1790952419.0295897,
+  "kind": "simulate",
+  "msg": "Simulated scream"
+ },
+ {
+  "ts": "2026-10-02 20:16:59",
+  "epoch": 1790952419.2154706,
+  "kind": "simulate",
+  "msg": "Simulated scream"
+ },
+ {
+  "ts": "2026-10-02 20:16:59",
+  "epoch": 1790952419.21963,
+  "kind": "simulate",
+  "msg": "Simulated scream"
+ },
+ {
+  "ts": "2026-10-02 20:16:59",
+  "epoch": 1790952419.4636471,
+  "kind": "simulate",
+  "msg": "Simulated scream"
+ },
+ {
+  "ts": "2026-10-02 20:16:59",
+  "epoch": 1790952419.6047122,
+  "kind": "simulate",
+  "msg": "Simulated scream"
+ },
+ {
+  "ts": "2026-10-02 20:17:08",
+  "epoch": 1790952428.528499,
+  "kind": "simulate",
+  "msg": "Simulated fall"
+ },
+ {
+  "ts": "2026-10-02 20:17:08",
+  "epoch": 1790952428.75222,
+  "kind": "detect",
+  "msg": "Danger detected (laptop sensors, score 65). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-02 20:17:18",
+  "epoch": 1790952438.7761796,
+  "kind": "sos",
+  "msg": "SOS from laptop sensors. Sent automatically after the countdown.",
+  "source": "laptop sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-02 20:17:24",
+  "epoch": 1790952444.878243,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-03 00:08:11",
+  "epoch": 1790966291.028487,
+  "kind": "detect",
+  "msg": "Danger detected (laptop sensors, score 86). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-03 00:08:21",
+  "epoch": 1790966301.111855,
+  "kind": "sos",
+  "msg": "SOS from laptop sensors. Sent automatically after the countdown.",
+  "source": "laptop sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-03 04:04:55",
+  "epoch": 1790980495.0930943,
+  "kind": "simulate",
+  "msg": "Simulated fall"
+ },
+ {
+  "ts": "2026-10-03 04:04:55",
+  "epoch": 1790980495.182244,
+  "kind": "detect",
+  "msg": "Danger detected (laptop sensors, score 66). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-03 04:04:58",
+  "epoch": 1790980498.4305012,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-04 01:11:36",
+  "epoch": 1791056496.5613747,
+  "kind": "detect",
+  "msg": "Danger detected (laptop sensors, score 51). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-04 01:11:46",
+  "epoch": 1791056506.6281326,
+  "kind": "sos",
+  "msg": "SOS from laptop sensors. Sent automatically after the countdown.",
+  "source": "laptop sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-04 01:12:11",
+  "epoch": 1791056531.7568011,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-04 01:33:07",
+  "epoch": 1791057787.3830497,
+  "kind": "detect",
+  "msg": "Danger detected (laptop sensors, score 74). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-04 01:33:17",
+  "epoch": 1791057797.4090307,
+  "kind": "sos",
+  "msg": "SOS from laptop sensors. Sent automatically after the countdown.",
+  "source": "laptop sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-04 13:50:57",
+  "epoch": 1791102057.2506406,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-08 22:09:12",
+  "epoch": 1791477552.860286,
+  "kind": "sos",
+  "msg": "SOS from laptop.",
+  "source": "laptop",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-08 22:09:18",
+  "epoch": 1791477558.7406583,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-08 22:50:04",
+  "epoch": 1791480004.9779682,
+  "kind": "detect",
+  "msg": "Danger detected (laptop sensors, score 87). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-08 22:50:14",
+  "epoch": 1791480014.9903831,
+  "kind": "sos",
+  "msg": "SOS from laptop sensors. Sent automatically after the countdown.",
+  "source": "laptop sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-08 23:16:02",
+  "epoch": 1791481562.258097,
+  "kind": "detect",
+  "msg": "Danger detected (laptop sensors, score 73). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-08 23:16:12",
+  "epoch": 1791481572.2911932,
+  "kind": "sos",
+  "msg": "SOS from laptop sensors. Sent automatically after the countdown.",
+  "source": "laptop sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-08 23:17:13",
+  "epoch": 1791481633.049116,
+  "kind": "respond",
+  "msg": "A helper is responding."
+ },
+ {
+  "ts": "2026-10-08 23:23:58",
+  "epoch": 1791482038.0213912,
+  "kind": "respond",
+  "msg": "A helper is responding."
+ },
+ {
+  "ts": "2026-10-08 23:28:24",
+  "epoch": 1791482304.710102,
+  "kind": "respond",
+  "msg": "A helper is responding."
+ },
+ {
+  "ts": "2026-10-08 23:32:37",
+  "epoch": 1791482557.7749355,
+  "kind": "detect",
+  "msg": "Danger detected (laptop sensors, score 86). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-08 23:32:47",
+  "epoch": 1791482567.8273036,
+  "kind": "sos",
+  "msg": "SOS from laptop sensors. Sent automatically after the countdown.",
+  "source": "laptop sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-08 23:35:25",
+  "epoch": 1791482725.4711742,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-08 23:36:11",
+  "epoch": 1791482771.1116018,
+  "kind": "detect",
+  "msg": "Danger detected (phone sensors, score 100). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-08 23:36:16",
+  "epoch": 1791482776.2249181,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-09 00:24:49",
+  "epoch": 1791485689.2786798,
+  "kind": "sos",
+  "msg": "SOS from laptop.",
+  "source": "laptop",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-09 00:24:50",
+  "epoch": 1791485690.6655214,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-09 00:25:02",
+  "epoch": 1791485702.4527833,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-09 00:25:04",
+  "epoch": 1791485704.705815,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-09 00:27:10",
+  "epoch": 1791485830.1289668,
+  "kind": "detect",
+  "msg": "Danger detected (phone sensors, score 74). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-09 00:27:13",
+  "epoch": 1791485833.2261605,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-09 10:09:03",
+  "epoch": 1791520743.4049115,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-09 10:09:04",
+  "epoch": 1791520744.2913866,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-09 10:09:07",
+  "epoch": 1791520747.0694592,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-09 10:09:17",
+  "epoch": 1791520757.157016,
+  "kind": "respond",
+  "msg": "A helper is responding."
+ },
+ {
+  "ts": "2026-10-09 10:09:18",
+  "epoch": 1791520758.6524272,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-09 10:09:19",
+  "epoch": 1791520759.889277,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-09 10:09:20",
+  "epoch": 1791520760.9374511,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-09 10:10:20",
+  "epoch": 1791520820.0591626,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-09 10:10:21",
+  "epoch": 1791520821.060794,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-09 10:10:53",
+  "epoch": 1791520853.7312996,
+  "kind": "detect",
+  "msg": "Danger detected (phone sensors, score 75). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-09 10:11:03",
+  "epoch": 1791520863.7676244,
+  "kind": "sos",
+  "msg": "SOS from phone sensors. Sent automatically after the countdown.",
+  "source": "phone sensors",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-09 10:11:08",
+  "epoch": 1791520868.0315783,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-09 10:11:18",
+  "epoch": 1791520878.449124,
+  "kind": "sos",
+  "msg": "SOS from phone.",
+  "source": "phone",
+  "distance_m": 50
+ },
+ {
+  "ts": "2026-10-09 10:11:19",
+  "epoch": 1791520879.8662684,
+  "kind": "safe",
+  "msg": "User marked safe. SOS ended."
+ },
+ {
+  "ts": "2026-10-09 12:56:54",
+  "epoch": 1791530814.9938424,
+  "kind": "detect",
+  "msg": "Danger detected (laptop sensors, score 100). Waiting 10s for confirmation."
+ },
+ {
+  "ts": "2026-10-09 12:57:05",
+  "epoch": 1791530825.0925522,
+  "kind": "sos",
+  "msg": "SOS from laptop sensors. Sent automatically after the countdown.",
+  "source": "laptop sensors",
+  "distance_m": 50
+ }
+]

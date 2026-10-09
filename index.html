@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>दृष्टि-IO — a friend beside every girl</title>
+<style>
+:root{--bg:#0a0e1a;--card:#131829;--accent:#7c6df2;--safe:#4ade80;--amber:#fbbf24;--text:#e5e7eb;--mut:#a3a9b8;--r:16px;--t:.3s ease;font-family:Inter,system-ui,"Segoe UI",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);line-height:1.6}
+h1{font-size:clamp(32px,6vw,48px);font-weight:700;line-height:1.2;margin:0 0 12px}
+h2{font-size:clamp(24px,4vw,32px);font-weight:600;line-height:1.2;margin:0 0 16px}
+h3{font-size:24px;font-weight:600;line-height:1.2;margin:0 0 8px}
+p{margin:0 0 16px;color:var(--mut)}
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px;max-width:1100px;margin:0 auto;padding:16px 24px;flex-wrap:wrap}
+nav a{color:var(--text);text-decoration:none;margin-left:16px;font-size:14px}nav b{font-size:24px}
+a:focus-visible,button:focus-visible{outline:3px solid #c4bdff;outline-offset:2px}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:8px;background:var(--accent);color:#fff;font-weight:600;text-decoration:none;transition:transform var(--t),box-shadow var(--t)}
+.btn:hover{transform:scale(1.03);box-shadow:0 0 16px rgba(124,109,242,.5)}.btn:active{transform:scale(.97)}
+.btn.ghost{background:#1e2540}
+section{max-width:1100px;margin:0 auto;padding:64px 24px}
+.hero{display:grid;gap:32px;align-items:center}@media(min-width:900px){.hero{grid-template-columns:1fr 1.1fr}}
+.scene{position:relative;border-radius:var(--r);overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.5);aspect-ratio:2/1.2;background:linear-gradient(#0d1233,#1b1440 60%,#2a1a3d)}
+.scene svg{width:100%;height:100%;display:block}
+.pan{animation:pan 6s linear infinite}@keyframes pan{to{transform:translateX(-300px)}}
+.glow{animation:fl 3s ease-in-out infinite}@keyframes fl{50%{opacity:.7}}
+.girl{animation:bob .6s ease-in-out infinite alternate}@keyframes bob{to{transform:translateY(-4px)}}
+.leg1{transform-origin:400px 255px;animation:sw .6s ease-in-out infinite alternate}
+.leg2{transform-origin:400px 255px;animation:sw .6s ease-in-out infinite alternate-reverse}
+@keyframes sw{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
+.phone{animation:fl 2s ease-in-out infinite}
+.notif{position:absolute;left:44%;top:14%;background:#fff;color:#0a0e1a;font-weight:600;font-size:clamp(12px,2vw,15px);padding:8px 16px;border-radius:999px;box-shadow:0 4px 16px rgba(0,0,0,.4);opacity:0;animation:nt 4s ease-in-out infinite}
+@keyframes nt{0%{opacity:0;transform:translateY(16px) scale(.8)}12%,70%{opacity:1;transform:none}85%,100%{opacity:0;transform:translateY(-8px)}}
+.cycle{position:relative;height:56px;margin-top:24px;font-size:24px;font-weight:600}
+.cycle span{position:absolute;inset:0;opacity:0;animation:cy 8s ease-in-out infinite}
+.cycle span:nth-child(2){animation-delay:4s;color:var(--amber)}
+@keyframes cy{0%{opacity:0;transform:translateY(8px)}10%,40%{opacity:1;transform:none}50%,100%{opacity:0}}
+.grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--card);border-radius:var(--r);padding:24px;box-shadow:0 4px 16px rgba(0,0,0,.35);transition:transform var(--t),box-shadow var(--t)}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.5)}
+.card p{margin:0}.ico{font-size:40px;display:inline-block;margin-bottom:8px}
+.step .ico{animation:pop 3s ease-in-out infinite}.step:nth-child(2) .ico{animation-delay:1s}.step:nth-child(3) .ico{animation-delay:2s}
+@keyframes pop{0%,25%,100%{transform:scale(1)}12%{transform:scale(1.25)}}
+.badge{display:inline-block;background:#16301f;color:var(--safe);border-radius:999px;padding:4px 12px;font-size:14px;margin:0 8px 8px 0}
+footer{border-top:1px solid #1e2540;padding:32px 24px;max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;font-size:14px;color:var(--mut)}
+footer a{color:var(--text);margin-right:16px}
+.persona{text-align:center;display:grid;justify-items:center;gap:8px}.chr{width:110px;height:165px;animation:bobc 3s ease-in-out infinite alternate}@keyframes bobc{to{transform:translateY(-6px)}}.persona p{margin:0}.chr{width:150px;height:192px}.eye{transform-box:fill-box;transform-origin:center;animation:blink 5s infinite}@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important}.notif{opacity:1}.cycle span:first-child{opacity:1}}
+</style></head><body>
+<nav aria-label="Main"><b>दृष्टि-IO</b><div><a href="#how">How it works</a><a href="#privacy">Privacy</a><a href="#about">About</a></div></nav>
+<section class="hero">
+ <div>
+  <h1>A friend beside every girl, at every age.</h1>
+  <p>दृष्टि (drishti) means sight, a way of seeing. दृष्टि-IO shows who is nearby, warns you before a quiet street, senses danger, and calls the people closest to you. It works without internet.</p>
+  <a class="btn" href="/dashboard" aria-label="Open the dashboard">Open the dashboard</a>
+  <a class="btn ghost" href="#how" aria-label="See how दृष्टि-IO helps">How it helps</a>
+ </div>
+ <div>
+  <div class="scene" role="img" aria-label="A girl walking on a dark street at night. Her phone shows 7 helpers nearby.">
+   <svg viewBox="0 0 800 480" preserveAspectRatio="xMidYMid slice">
+    <defs><radialGradient id="g"><stop offset="0" stop-color="#fbbf24" stop-opacity=".55"/><stop offset="1" stop-color="#fbbf24" stop-opacity="0"/></radialGradient></defs>
+    <circle cx="640" cy="90" r="30" fill="#e5e7eb" opacity=".15"/>
+    <g class="pan"><g id="lamp"></g>
+     <g fill="#1a1f3a"><rect x="100" y="150" width="6" height="250"/><rect x="400" y="150" width="6" height="250"/><rect x="700" y="150" width="6" height="250"/><rect x="1000" y="150" width="6" height="250"/><rect x="1300" y="150" width="6" height="250"/></g>
+     <g class="glow"><circle cx="103" cy="150" r="110" fill="url(#g)"/><circle cx="403" cy="150" r="110" fill="url(#g)"/><circle cx="703" cy="150" r="110" fill="url(#g)"/><circle cx="1003" cy="150" r="110" fill="url(#g)"/><circle cx="1303" cy="150" r="110" fill="url(#g)"/></g>
+    </g>
+    <rect y="400" width="800" height="80" fill="#0b0f22"/>
+    <g class="girl" fill="#05070f"><circle cx="400" cy="130" r="22"/><path d="M380 150h40l8 105h-56z"/><path d="M420 130c14 10 14 40 6 60l-12-6c6-18 4-34-6-44z"/>
+     <path class="leg1" d="M392 255h14l-4 140h-14z"/><path class="leg2" d="M396 255h14l10 140h-14z"/>
+     <path d="M418 170l30 30-8 8-32-24z"/><g class="phone"><rect x="440" y="186" width="14" height="24" rx="3" fill="#7c6df2" transform="rotate(-20 447 198)"/><circle cx="450" cy="195" r="26" fill="#7c6df2" opacity=".25"/></g></g>
+   </svg>
+   <div class="notif" aria-hidden="true">🛡️ 7 helpers nearby</div>
+  </div>
+  <div class="cycle" aria-live="off"><span>If you feel anything fishy...</span><span>Just scream HELP.</span></div>
+ </div>
+</section>
+<section aria-label="Who दृष्टि-IO is for"><div class="grid"><div class="card persona"><svg viewBox="0 6 100 128" class="chr" aria-hidden="true"><circle cx="50" cy="74" r="50" fill="#1a2150"/><circle cx="23" cy="48" r="9" fill="#5a3326"/><circle cx="77" cy="48" r="9" fill="#5a3326"/><path d="M14 40l12 2-6 10zM86 40l-12 2 6 10z" fill="#ff6b8b"/><circle cx="50" cy="48" r="25" fill="#f8cfae"/><path d="M25 46Q25 20 50 20T75 46Q62 34 50 36T25 46Z" fill="#5a3326"/><g class="eye"><circle cx="41" cy="50" r="6.5" fill="#fff"/><circle cx="41.6" cy="51" r="3.6" fill="#2b1b17"/><circle cx="42.8" cy="49.4" r="1.2" fill="#fff"/></g><g class="eye"><circle cx="59" cy="50" r="6.5" fill="#fff"/><circle cx="59.6" cy="51" r="3.6" fill="#2b1b17"/><circle cx="60.8" cy="49.4" r="1.2" fill="#fff"/></g><circle cx="32" cy="59" r="4.5" fill="#ff8fa3" opacity=".6"/><circle cx="68" cy="59" r="4.5" fill="#ff8fa3" opacity=".6"/><path d="M45 60q5 5 10 0" stroke="#7a3b2e" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M38 76h24l8 34H30z" fill="#ffd45e"/><circle cx="31" cy="84" r="4.5" fill="#f8cfae"/><circle cx="73" cy="82" r="4.5" fill="#f8cfae"/><path d="M73 80L82 40" stroke="#9aa" stroke-width="1"/><ellipse cx="83" cy="28" rx="10" ry="12" fill="#ff5a78"/><ellipse cx="79" cy="23" rx="2.5" ry="4" fill="#fff" opacity=".6"/><rect x="40" y="110" width="7" height="14" rx="3" fill="#f8cfae"/><rect x="53" y="110" width="7" height="14" rx="3" fill="#f8cfae"/><ellipse cx="42" cy="126" rx="9" ry="5" fill="#ff6b8b"/><ellipse cx="58" cy="126" rx="9" ry="5" fill="#ff6b8b"/></svg><h3>Little girl</h3><span class="badge" style="background:#242a5c;color:#b9b4ff">Nearby people</span><p>Always knows who is close, and a grown-up is never far.</p></div><div class="card persona"><svg viewBox="0 6 100 128" class="chr" aria-hidden="true"><circle cx="50" cy="74" r="50" fill="#1a2150"/><circle cx="76" cy="58" r="9" fill="#3b2447"/><ellipse cx="50" cy="46" rx="27" ry="28" fill="#3b2447"/><circle cx="50" cy="48" r="25" fill="#d9a077"/><path d="M26 44Q28 24 50 24T74 44Q58 36 50 38T26 44Z" fill="#3b2447"/><path d="M25 52Q25 18 50 18T75 52" fill="none" stroke="#ff9f43" stroke-width="6" stroke-linecap="round"/><rect x="19" y="46" width="9" height="16" rx="4.5" fill="#ff9f43"/><rect x="72" y="46" width="9" height="16" rx="4.5" fill="#ff9f43"/><g class="eye"><circle cx="41" cy="50" r="6.5" fill="#fff"/><circle cx="41.6" cy="51" r="3.6" fill="#2b1b17"/><circle cx="42.8" cy="49.4" r="1.2" fill="#fff"/></g><g class="eye"><circle cx="59" cy="50" r="6.5" fill="#fff"/><circle cx="59.6" cy="51" r="3.6" fill="#2b1b17"/><circle cx="60.8" cy="49.4" r="1.2" fill="#fff"/></g><circle cx="32" cy="59" r="4.5" fill="#ff8fa3" opacity=".6"/><circle cx="68" cy="59" r="4.5" fill="#ff8fa3" opacity=".6"/><path d="M45 60q5 5 10 0" stroke="#7a3b2e" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="32" y="74" width="36" height="36" rx="12" fill="#6fd6c0"/><path d="M50 76v32" stroke="#fff" stroke-width="2"/><rect x="25" y="78" width="9" height="20" rx="4.5" fill="#6fd6c0"/><rect x="66" y="78" width="9" height="20" rx="4.5" fill="#6fd6c0"/><rect x="70" y="92" width="9" height="14" rx="2.5" fill="#6ab0ff"/><rect x="37" y="110" width="11" height="14" rx="3" fill="#3b57a8"/><rect x="52" y="110" width="11" height="14" rx="3" fill="#3b57a8"/><ellipse cx="41" cy="126" rx="10" ry="5" fill="#fff"/><ellipse cx="59" cy="126" rx="10" ry="5" fill="#fff"/></svg><h3>Teen</h3><span class="badge" style="background:#242a5c;color:#b9b4ff">Quiet-street warning</span><p>Warned before she walks into an empty street, with a way to call for help.</p></div><div class="card persona"><svg viewBox="0 6 100 128" class="chr" aria-hidden="true"><circle cx="50" cy="74" r="50" fill="#1a2150"/><path d="M23 50Q23 18 50 18T77 50V96Q77 102 70 102H30Q23 102 23 96Z" fill="#1b1212"/><circle cx="50" cy="48" r="25" fill="#b9714f"/><path d="M25 46Q28 22 50 22T75 46Q60 32 50 34T25 46Z" fill="#1b1212"/><circle cx="50" cy="31" r="2.2" fill="#e0334a"/><g class="eye"><circle cx="41" cy="50" r="6.5" fill="#fff"/><circle cx="41.6" cy="51" r="3.6" fill="#2b1b17"/><circle cx="42.8" cy="49.4" r="1.2" fill="#fff"/></g><g class="eye"><circle cx="59" cy="50" r="6.5" fill="#fff"/><circle cx="59.6" cy="51" r="3.6" fill="#2b1b17"/><circle cx="60.8" cy="49.4" r="1.2" fill="#fff"/></g><circle cx="32" cy="59" r="4.5" fill="#ff8fa3" opacity=".6"/><circle cx="68" cy="59" r="4.5" fill="#ff8fa3" opacity=".6"/><path d="M45 60q5 5 10 0" stroke="#7a3b2e" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="25" cy="62" r="2.5" fill="#ffd45e"/><circle cx="75" cy="62" r="2.5" fill="#ffd45e"/><path d="M37 76h26l9 34H28z" fill="#3f55c9"/><path d="M37 76h26l-2 10H39z" fill="#ff8fb5"/><circle cx="31" cy="86" r="4.5" fill="#b9714f"/><circle cx="69" cy="86" r="4.5" fill="#b9714f"/><path d="M73 90q0-8 7-8t7 8" fill="none" stroke="#d9a62e" stroke-width="1.5"/><rect x="70" y="90" width="16" height="13" rx="3.5" fill="#ffd45e"/><rect x="41" y="110" width="7" height="14" rx="3" fill="#b9714f"/><rect x="53" y="110" width="7" height="14" rx="3" fill="#b9714f"/><ellipse cx="43" cy="126" rx="9" ry="5" fill="#2b3a88"/><ellipse cx="58" cy="126" rx="9" ry="5" fill="#2b3a88"/></svg><h3>Woman</h3><span class="badge" style="background:#242a5c;color:#b9b4ff">Scream and struggle detection</span><p>On a late commute, दृष्टि-IO hears a scream and senses a struggle.</p></div><div class="card persona"><svg viewBox="0 6 100 128" class="chr" aria-hidden="true"><circle cx="50" cy="74" r="50" fill="#1a2150"/><circle cx="50" cy="19" r="10" fill="#d7dae6"/><circle cx="50" cy="48" r="25" fill="#f1c8a5"/><path d="M25 46Q25 24 50 24T75 46Q62 34 50 36T25 46Z" fill="#d7dae6"/><g class="eye"><circle cx="41" cy="50" r="6.5" fill="#fff"/><circle cx="41.6" cy="51" r="3.6" fill="#2b1b17"/><circle cx="42.8" cy="49.4" r="1.2" fill="#fff"/></g><g class="eye"><circle cx="59" cy="50" r="6.5" fill="#fff"/><circle cx="59.6" cy="51" r="3.6" fill="#2b1b17"/><circle cx="60.8" cy="49.4" r="1.2" fill="#fff"/></g><circle cx="41" cy="50" r="9.5" fill="none" stroke="#7a4bc0" stroke-width="2"/><circle cx="59" cy="50" r="9.5" fill="none" stroke="#7a4bc0" stroke-width="2"/><path d="M50.5 50h-1" stroke="#7a4bc0" stroke-width="2"/><circle cx="32" cy="59" r="4.5" fill="#ff8fa3" opacity=".6"/><circle cx="68" cy="59" r="4.5" fill="#ff8fa3" opacity=".6"/><path d="M45 60q5 5 10 0" stroke="#7a3b2e" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M36 76h28l6 24H30z" fill="#f4a3c4"/><circle cx="31" cy="88" r="4.5" fill="#f4a3c4"/><circle cx="69" cy="88" r="4.5" fill="#f4a3c4"/><path d="M32 98h36l8 26H24z" fill="#a57be0"/><path d="M80 126V92Q80 84 87 86" fill="none" stroke="#8a5a2b" stroke-width="3" stroke-linecap="round"/><ellipse cx="40" cy="126" rx="8" ry="4" fill="#7a4bc0"/><ellipse cx="60" cy="126" rx="8" ry="4" fill="#7a4bc0"/></svg><h3>Grandmother</h3><span class="badge" style="background:#242a5c;color:#b9b4ff">Fall detection</span><p>If she falls and stays still, someone nearby is told right away.</p></div></div><div class="grid" style="margin-top:32px"><div class="card"><h3>Watches</h3><p>Counts the people around her and warns her when she is alone.</p></div><div class="card"><h3>Senses</h3><p>Her phone feels a fall or a struggle and hears a scream. दृष्टि-IO asks "Are you OK?" first.</p></div><div class="card"><h3>Calls help</h3><p>Sirens on her phone, and the nearest people see her distance and direction.</p></div></div><p style="text-align:center;margin-top:24px">Open it on a phone and a laptop to try it: each one can ask for help and answer the other.</p></section>
+<section id="how"><h2>How it works</h2><div class="grid">
+ <div class="card step"><span class="ico">👂</span><h3>Sense</h3><p>दृष्टि-IO watches motion and listens for screams or calls for help on your device.</p></div>
+ <div class="card step"><span class="ico">🔔</span><h3>Alert</h3><p>When danger looks real, it confirms with you, sounds a siren and tells people nearby.</p></div>
+ <div class="card step"><span class="ico">🤝</span><h3>Help arrives</h3><p>The nearest helper responds, and you see "Help coming" with their distance.</p></div>
+</div></section>
+<section id="privacy"><h2>Privacy</h2>
+ <p>Your data stays on your device. Nothing is uploaded. Location is shared only during an SOS.</p>
+ <span class="badge">Works offline</span><span class="badge">No sign-up required</span><span class="badge">Your data never leaves your device</span></section>
+<section id="about"><h2>About</h2>
+ <p>दृष्टि-IO began with a simple question: what if a girl walking home never had to feel alone? Most safety tools need signal, accounts and time she doesn't have in that moment.</p>
+ <p>So we built a friend that runs on what is already in her hand. It sees who is close, notices when something is wrong, and calls on the people nearest to her.</p></section>
+<footer><div><b style="color:var(--text)">दृष्टि-IO</b><br>A friend beside every girl, at every age.</div>
+ <div><a href="#how">How it works</a><a href="#privacy">Privacy</a><a href="#about">About</a></div>
+ <div>v1.0.0 · Built for AVINYA 2K26</div></footer>
+</body></html>

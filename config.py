@@ -1,0 +1,19 @@
+"""दृष्टि-IO settings. Tune thresholds here."""
+SCREAM_RMS = 0.20            # loudness for scream
+SHOUT_RMS = 0.08
+SCREAM_CENTROID = 2500       # Hz, brightness
+SCREAM_F0 = 350              # Hz, pitch
+VOICE_DECAY_SECONDS = 8
+FALL_THRESHOLD = 25
+STRUGGLE_THRESHOLD = 15
+DANGER_CAUTION = 40
+DANGER_TRIGGER = 50
+CONFIRM_SECONDS = 0          # the 10-second countdown is the confirmation window
+COUNTDOWN_SECONDS = 10       # time the user has to say "I'm safe" before SOS auto-fires
+DISTRESS_WORD_SCORES = {"help": 70, "bachao": 70, "stop": 40, "leave me": 50, "save me": 70}
+SIMULATED_DISTANCE_M = 50
+LOW_HELPER_THRESHOLD = 3
+OLLAMA_URL = "http://localhost:11434/api/generate"
+OLLAMA_MODEL = "llama3.2"
+KEYMAP = {"f": "fall", "s": "struggle", "d": "dizzy", "z": "freeze", "v": "scream", "h": "help"}
+MOTION_SCORES = {"fall": 90, "struggle": 70, "dizzy": 45, "freeze": 55}
